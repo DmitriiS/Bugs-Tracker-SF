@@ -1,0 +1,16 @@
+{
+    "projectName": "Bugs Tracker",
+    "username": "dmitrii@testtask.com",
+    "id": "17821770-f11f-11e5-a354-79d47a0b3d19",
+    "namespace": "",
+    "environment": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "workspace": "D:\\!!! Projects",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}

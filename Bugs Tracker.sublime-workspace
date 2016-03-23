@@ -1,0 +1,271 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"eve",
+				"eventName"
+			],
+			[
+				"Char",
+				"ChargifyWebServiceHandler	[Custom Apex Class]"
+			],
+			[
+				"customer",
+				"customerEmail"
+			],
+			[
+				"pa",
+				"payload"
+			],
+			[
+				"c",
+				"Signup_Date__c"
+			],
+			[
+				"su",
+				"subscriptionsToUpdate"
+			],
+			[
+				"sub",
+				"subscriptionsToUpdate"
+			],
+			[
+				"Su",
+				"Subscription_ID__c"
+			],
+			[
+				"iD",
+				"Id"
+			],
+			[
+				"subs",
+				"subscriptions"
+			],
+			[
+				"S",
+				"Subscription__c"
+			],
+			[
+				"is",
+				"PUBLIC isEmpty(String str) 	Boolean"
+			],
+			[
+				"in",
+				"inputParameters"
+			],
+			[
+				"te",
+				"temp"
+			],
+			[
+				"get",
+				"PUBLIC get(ANY key) 	String"
+			],
+			[
+				"new",
+				"newSubscription"
+			],
+			[
+				"req",
+				"PUBLIC requestURI"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 129.0,
+		"last_filter": "Package Control: insta",
+		"selected_items":
+		[
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 549.0
+	},
+	"console":
+	{
+		"height": 162.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/!!! Projects/Bugs Tracker"
+	],
+	"file_history":
+	[
+		"/D/!!! Projects/Chargify + Pandadoc Sandbox/src/classes/TriggerHelper.cls",
+		"/D/!!! Projects/Chargify + Pandadoc Sandbox/src/classes/IntercomIO.cls",
+		"/D/!!! Projects/Pandadoc/src/pages/PandaDocSetupCss.page",
+		"/D/!!! Projects/Pandadoc/src/classes/CustomException.cls",
+		"/D/!!! Projects/Pandadoc/src/classes/PandaDocController.cls",
+		"/D/!!! Projects/Pandadoc/src/classes/LogFactory.cls",
+		"/D/!!! Projects/Pandadoc/src/pages/PandaDocSetup.page",
+		"/D/!!! Projects/Pandadoc/src/classes/TriggerTemplate.cls",
+		"/C/Users/Dima/AppData/Roaming/Sublime Text 3/Packages/MavensMate/mavensmate.sublime-settings"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"D:\\!!! Projects\\Chargify + Pandadoc Sandbox",
+			"D:\\!!! Projects\\Pandadoc",
+			"D:\\!!! Projects\\Milestones InetIndustry\\src\\classes"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Lead Owner is",
+			"Email__c",
+			"ChargifyWebServiceHandler",
+			"namespacePrefix",
+			"organizationNamespace",
+			"RestContext",
+			"href='#",
+			"href='#'",
+			"LogFactory",
+			"callout"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.MavensMate-OutputPanel":
+	{
+		"height": 130.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Bugs Tracker.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 547.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

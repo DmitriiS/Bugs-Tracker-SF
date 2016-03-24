@@ -1,0 +1,43 @@
+{
+    "constructors": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 9,
+                "line": 2
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "BugsTrackerController",
+            "parameters": [],
+            "references": [],
+            "type": null
+        }
+    ],
+    "externalReferences": [],
+    "id": "01p58000003G7ABAA0",
+    "innerClasses": [],
+    "interfaces": [],
+    "key": "01p58000003G7ABAA0",
+    "methods": [],
+    "name": "BugsTrackerController",
+    "namespace": null,
+    "parentClass": "",
+    "properties": [],
+    "tableDeclaration": {
+        "annotations": [],
+        "location": {
+            "column": 27,
+            "line": 1
+        },
+        "modifiers": [
+            "public",
+            "with sharing"
+        ],
+        "name": "BugsTrackerController",
+        "references": [],
+        "type": "BugsTrackerController"
+    },
+    "variables": []
+}

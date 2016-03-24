@@ -4,7 +4,7 @@
             "annotations": [],
             "location": {
                 "column": 9,
-                "line": 2
+                "line": 5
             },
             "modifiers": [
                 "public"
@@ -20,11 +20,41 @@
     "innerClasses": [],
     "interfaces": [],
     "key": "01p58000003G7ABAA0",
-    "methods": [],
+    "methods": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 9
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "init",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        }
+    ],
     "name": "BugsTrackerController",
     "namespace": null,
     "parentClass": "",
-    "properties": [],
+    "properties": [
+        {
+            "annotations": [],
+            "location": {
+                "column": 28,
+                "line": 3
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "Objectives",
+            "references": [],
+            "type": "LIST"
+        }
+    ],
     "tableDeclaration": {
         "annotations": [],
         "location": {

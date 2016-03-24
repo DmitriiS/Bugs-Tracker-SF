@@ -75,6 +75,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/classes/BugsTrackerController.cls",
+			"settings":
+			{
+				"buffer_size": 332,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/pages/BugsTracker.page",
+			"settings":
+			{
+				"buffer_size": 7082,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -117,7 +133,9 @@
 	},
 	"expanded_folders":
 	[
-		"/D/!!! Projects/Bugs Tracker"
+		"/D/!!! Projects/Bugs Tracker",
+		"/D/!!! Projects/Bugs Tracker/src",
+		"/D/!!! Projects/Bugs Tracker/src/pages"
 	],
 	"file_history":
 	[
@@ -150,6 +168,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<\n",
 			"Lead Owner is",
 			"Email__c",
 			"ChargifyWebServiceHandler",
@@ -177,8 +196,65 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/classes/BugsTrackerController.cls",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 332,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								198,
+								198
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Apex.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/pages/BugsTracker.page",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7082,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5713,
+								5713
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1696.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],

@@ -50,7 +50,7 @@
             "modifiers": [
                 "public"
             ],
-            "name": "Objectives",
+            "name": "objectives",
             "references": [],
             "type": "LIST"
         }

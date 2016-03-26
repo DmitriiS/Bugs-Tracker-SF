@@ -1,8 +1,9 @@
-<apex:page controller="BugsTrackerController" showHeader="false" sidebar="false" action="{!init}">
+<apex:page controller="BugsTrackerController" showHeader="false" sidebar="false" action="{!initLoading}">
 	<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">      
 <head>
     <title>Salesforce Bugs Tracker Application</title>
     <apex:stylesheet value="{!URLFOR($Resource.SLDS100, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
 </head>
 
 <body>
@@ -69,7 +70,7 @@
       </tr>
     </thead>
 
-    <tbody>   
+    <tbody id='theObjectivesTable'>   
     <apex:repeat value="{!objectives}" var="obj">  
       <tr class="slds-hint-parent">       
         <th class="slds-truncate"><apex:outputText value="{!obj.Name}" /></th>
@@ -89,35 +90,38 @@
         <td class="slds-truncate"><apex:outputText value="{!obj.Version__c	}" /></td>
 
         <td class="slds-cell-shrink" data-label="Actions">
-          <div class="slds-button-group" role="group">
-			  <button class="slds-button slds-button--icon-border">
-			    <svg aria-hidden="true" class="slds-button__icon">
-			      <use xlink:href="{!URLFOR($Resource.SLDS100, 'assets/icons/utility-sprite/svg/symbols.svg#edit_form')}"></use>
-			    </svg>
-			    <span class="slds-assistive-text">Edit</span>
-			  </button>
-			  <button class="slds-button slds-button--icon-border" rendered="{!obj.Objective_Status__c == 'Closed' }">
-			    <svg aria-hidden="true" class="slds-button__icon">
-			      <use xlink:href="{!URLFOR($Resource.SLDS100, 'assets/icons/utility-sprite/svg/symbols.svg#delete')}"></use>
-			    </svg>
-			    <span class="slds-assistive-text">Delete</span>
-			  </button>	 
-		  </div>
+        
+          <apex:form>
+          	  <apex:commandButton styleClass="slds-button slds-button--neutral" action="{!deleteObjective}" value="Edit" title="Edit Objective" 
+			  reRender="theObjectivesTable"/>
+			  <apex:commandButton styleClass="slds-button slds-button--neutral" action="{!deleteObjective}" value="Delete" title="Delete Objective" 
+			  reRender="theObjectivesTable"/>
+		  </apex:form>
+	
         </td>
       </tr>
     </apex:repeat>       
     </tbody>
 
   	</table>
-
+  	
   	<footer role="contentinfo" class="slds-p-around--large">
       <div class="slds-grid slds-grid--align-spread">
         <p class="slds-col">Salesforce Bugs Tracker Application</p>
         <p class="slds-col">&copy; Dmitrii Surkov</p>
       </div>
     </footer>
-
 	</div>
 </body>
+
+
+
 </html> 
+
+
+
+
+<script>
+</script>
+
 </apex:page>

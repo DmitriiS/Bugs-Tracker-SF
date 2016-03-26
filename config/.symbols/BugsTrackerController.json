@@ -30,7 +30,22 @@
             "modifiers": [
                 "public"
             ],
-            "name": "init",
+            "name": "initLoading",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 18
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "deleteObjective",
             "parameters": [],
             "references": [],
             "returnType": "void",

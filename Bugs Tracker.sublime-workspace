@@ -83,7 +83,7 @@
 			"file": "src/pages/BugsTracker.page",
 			"settings":
 			{
-				"buffer_size": 10151,
+				"buffer_size": 12632,
 				"line_ending": "Unix"
 			}
 		},
@@ -91,7 +91,7 @@
 			"file": "src/classes/BugsTrackerController.cls",
 			"settings":
 			{
-				"buffer_size": 1329,
+				"buffer_size": 1401,
 				"line_ending": "Unix"
 			}
 		}
@@ -172,6 +172,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"RemoteAction",
+			"inputId",
 			";\n",
 			"Objective",
 			"<\n",
@@ -211,15 +213,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10151,
+						"buffer_size": 12632,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7805,
-								7805
+								11021,
+								11021
 							]
 						],
 						"settings":
@@ -227,7 +229,7 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3300.0,
+						"translation.y": 4871.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -239,15 +241,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1329,
+						"buffer_size": 1401,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								155,
-								267
+								102,
+								102
 							]
 						],
 						"settings":
@@ -255,7 +257,7 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Apex.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 60.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,

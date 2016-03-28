@@ -1,4 +1,4 @@
-<apex:page controller="BugsTrackerController" showHeader="false" sidebar="false" action="{!initLoading}">
+<apex:page showHeader="false" sidebar="false">
 	<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">      
 <head>
     <title>Salesforce Bugs Tracker Application</title>
@@ -53,13 +53,12 @@
     </div>
 
     <div class="slds-col slds-no-flex slds-align-bottom">
-        <button class="slds-button slds-button--brand">BackUp Settings</button>        
+        <button class="slds-button slds-button--brand" id="backupButton">BackUp Settings</button>        
     </div>  
-  
   </div>
 </div>
 
-	<table class="slds-table slds-table--bordered">
+<table class="slds-table slds-table--bordered">
     <thead>
       <tr class="slds-text-heading--label">        
         <th class="slds-is-sortable" scope="col">
@@ -86,31 +85,10 @@
         <th class="slds-cell-shrink"></th>
       </tr>
     </thead>
-<!-- !!!!!!!!!!!!!!! CHANGE TO JQUERY BASED MARKUP !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     <tbody id='theObjectivesTable'>   
-    <apex:repeat value="{!objectives}" var="obj">  
-      <tr class="slds-hint-parent">       
-        <th class="slds-truncate"><apex:outputText value="{!obj.Name}" /></th>
-        <td class="slds-truncate"><apex:outputText value="{!obj.Objective_Type__c}" /></td>
-        <td class="slds-truncate"><apex:outputText value="{!obj.Objective_Status__c}" /></td>
-        <td class="slds-truncate"><apex:outputText value="{!obj.Start_Date__c}" /></td>
-        <td class="slds-truncate"><apex:outputText value="{!obj.End_Date__c}" /></td>        
-        <td class="slds-truncate"><apex:outputText value="{!obj.Description__c}" /></td>
-        <td class="slds-truncate"><apex:outputText value="{!obj.Version__c	}" /></td>
-<!-- !!!!!!!!!!!!!!! CHANGE TO JQUERY BASED MARKUP !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-        <td class="slds-cell-shrink" data-label="Actions">
-<!-- !!!!!!!!!!!!!!! CHANGE TO BUTTON TAGS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-          <apex:form>
-          	  <apex:commandButton styleClass="slds-button slds-button--neutral modalButton" action="{!editObjective}" value="Edit" title="Edit Objective" reRender="theObjectivesTable"/>
-			  <apex:commandButton styleClass="slds-button slds-button--neutral createObjective" action="{!deleteObjective}" value="Delete" title="Delete Objective" reRender="theObjectivesTable"/>
-		  </apex:form>
-<!-- !!!!!!!!!!!!!!! CHANGE TO BUTTON TAGS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->	
-        </td>
-      </tr>
-    </apex:repeat>       
+    <!--TABLE POPULATED FROM REMOTE OBJECTS -->
     </tbody>
-  	</table>
-  	<br /><br />
+</table>
 
 	<!-- FORM FOR CREATING NEW OBJECTIVE -->
   	<div class="slds-modal slds-fade-in-close" id="newObjectiveModal" aria-hidden="true" role="dialog">
@@ -128,7 +106,7 @@
         <div>
         <form class="slds-form--stacked">
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="name">Name</label>
+				<label class="slds-form-element__label slds-required" for="name">Name</label>
 				<div class="slds-form-element__control">
 					<input id="newName" class="slds-input" type="text" />
 				</div>
@@ -152,13 +130,13 @@
 				</div>
 			</div>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="version">Version</label>
+				<label class="slds-form-element__label slds-required" for="version">Version</label>
 				<div class="slds-form-element__control">
 					<input id="newVersion" class="slds-input" type="text" />
 				</div>
 			</div>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="startDate">Start Date</label>
+				<label class="slds-form-element__label slds-required" for="startDate">Start Date</label>
 				<div class="slds-form-element__control">
 					<input id="newStartDate" class="slds-input date-pick" />
 				</div>
@@ -198,6 +176,8 @@
 	
 	j$(document).ready(function () 
     {    	
+    	retrieveObjectives();
+
     	var myDate = new Date();
     	j$("#newStartDate, .date-pick").datepicker(
     	{
@@ -223,22 +203,60 @@
     {
     	closeModalWindow();
     });       
+
+    //Backup buttin click
+    j$('#backupButton').click(function()
+    {
+    	checkForNull();
+    });
     
     //Function to retrieve all objective
     function retrieveObjectives()
     {
     	var objectives = new SObjectModel.Objective();
-    	objectives.retrieve({limit: 30}, function(err, records, event)
+    	objectives.retrieve({limit: 100}, function(err, records)
     	{
             if(err) 
             {
 				alert(err.message);
 			}else 
 			{
-
+				populate(records); 
 			}
-
+		});		
     }
+
+    //Function to populate retrieved records to page
+    function populate(records)
+    {
+    	var tableBody = j$('#theObjectivesTable');
+        records.forEach(function(record) 
+        {
+        	var tableRow = j$('<tr class="slds-hint-parent">');
+        	var tableColName = j$('<td class="slds-truncate" scope="row" data-label="Name">' + record.get('Name') + '</td>');
+        	var tableColDesc = j$('<td class="slds-truncate" scope="row" data-label="Description">' + record.get('Description__c') + '</td>');
+        	var tableColStat = j$('<td class="slds-truncate" scope="row" data-label="Status">' + record.get('Objective_Status__c') + '</td>');
+        	var tableColType = j$('<td class="slds-truncate" scope="row" data-label="Type">' + record.get('Objective_Type__c') + '</td>');
+        	var tableColVers = j$('<td class="slds-truncate" scope="row" data-label="Version">' + record.get('Version__c') + '</td>');
+        	var tableColSDate = j$('<td class="slds-truncate" scope="row" data-label="Start_Date">' + record.get('Start_Date__c') + '</td>');
+        	var tableColEDate = j$('<td class="slds-truncate" scope="row" data-label="End_Date">' + record.get('End_Date__c') + '</td>'); 
+        	var tableButtons = j$('<td class="slds-truncate" scope="row" data-label="End_Date">' + record.get('Id') + '</td></tr>'); 
+        	/*var buttons = $j('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral">Edit</button><button class="slds-button slds-button--neutral">Delete</button></td></tr>');*/
+        	   
+
+        	tableRow.prepend(tableButtons);        	
+        	tableRow.prepend(tableColVers); 
+        	tableRow.prepend(tableColDesc);
+        	tableRow.prepend(tableColEDate);
+        	tableRow.prepend(tableColSDate);
+        	tableRow.prepend(tableColStat);
+        	tableRow.prepend(tableColType);
+	        tableRow.prepend(tableColName);
+	        tableRow.appendTo(tableBody);
+
+	        checkForNull();
+        });
+	}    
 
 	//Function to Create Objective
   	function createObjective()
@@ -256,6 +274,12 @@
 		createObj.create(createCallback);	
     }    
 
+    //Function to change "undefiend" values to empty string
+    function checkForNull()
+    {
+    	j$("td:contains('undefined')").html("");
+    }
+
     // Callback to handle DML Remote Objects calls
     function createCallback(err, ids)
     {
@@ -264,7 +288,6 @@
 	        alert(err); 
 	    } else 
 	    {
-	        alert('Insert Complete');
 	        j$('#theObjectivesTable').empty();
 	        closeModalWindow();
 	        retrieveObjectives();
@@ -284,5 +307,4 @@
     }
 
 </script>
-
 </apex:page>

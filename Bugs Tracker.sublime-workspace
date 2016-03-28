@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"style",
+				"styleClass	(String)"
+			],
+			[
 				"eve",
 				"eventName"
 			],
@@ -76,13 +80,10 @@
 	"buffers":
 	[
 		{
-			"contents": "<apex:page controller=\"BugsTrackerController\" showHeader=\"false\" sidebar=\"false\" action=\"{!init}\">\n	<html xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">      \n<head>\n    <title>Salesforce Bugs Tracker Application</title>\n    <apex:stylesheet value=\"{!URLFOR($Resource.SLDS100, 'assets/styles/salesforce-lightning-design-system-vf.css')}\" />\n</head>\n\n<body>\n<div class=\"slds\">  \n	<!-- IMPROVE THIS PART -->\n<div class=\"slds-page-header\" role=\"banner\">\n  <div class=\"slds-grid\">\n    <div class=\"slds-col slds-has-flexi-truncate\">\n      <div class=\"slds-media\">\n        <div class=\"slds-media__figure\">\n          <svg aria-hidden=\"true\" class=\"slds-icon slds-icon--large slds-icon-standard-user\">\n            <use xlink:href=\"{!URLFOR($Resource.SLDS100, 'assets/icons/standard-sprite/svg/symbols.svg#task')}\"></use>\n          </svg>\n        </div>\n        <div class=\"slds-media__body\">\n          <div class=\"slds-grid\">\n            <h1 class=\"slds-page-header__title slds-m-right--small slds-truncate slds-align-middle\" title=\"Record Title\">List of Objectives</h1>\n            <div class=\"slds-col slds-shrink-none\">\n              <button class=\"slds-button slds-button--neutral slds-not-selected\" aria-live=\"assertive\">\n                <span class=\"slds-text-not-selected\">\n                  <svg aria-hidden=\"true\" class=\"slds-button__icon--stateful slds-button__icon--left\">\n                    <use xlink:href=\"{!URLFOR($Resource.SLDS100, 'assets/icons/utility-sprite/svg/symbols.svg#add')}\"></use>\n                  </svg>Add new Bug or Feature\n                </span>                \n              </button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"slds-col slds-no-flex slds-align-bottom\">\n        <button class=\"slds-button slds-button--brand\">BackUp Settings</button>        \n    </div>  \n  \n  </div>\n</div>\n\n	<table class=\"slds-table slds-table--bordered\">\n    <thead>\n      <tr class=\"slds-text-heading--label\">        \n        <th class=\"slds-is-sortable\" scope=\"col\">\n          <div class=\"slds-truncate\">Objective Name</div>\n        </th>\n        <th class=\"slds-is-sortable\" scope=\"col\">\n          <div class=\"slds-truncate\">Objective Type</div>\n        </th>\n        <th class=\"slds-is-sortable\" scope=\"col\">\n          <div class=\"slds-truncate\">Objective Status</div>\n        </th>\n        <th class=\"slds-is-sortable\" scope=\"col\">\n          <div class=\"slds-truncate\">Start Date</div>\n        </th>\n        <th class=\"slds-is-sortable\" scope=\"col\">\n          <div class=\"slds-truncate\">End Date</div>\n        </th>\n        <th class=\"slds-is-sortable\" scope=\"col\">\n          <div class=\"slds-truncate\">Description</div>\n        </th>\n        <th class=\"slds-is-sortable\" scope=\"col\">\n          <div class=\"slds-truncate\">Version</div>\n        </th>       \n        <th class=\"slds-cell-shrink\"></th>\n      </tr>\n    </thead>\n\n    <tbody>   \n    <apex:repeat value=\"{!objectives}\" var=\"obj\">  \n      <tr class=\"slds-hint-parent\">       \n        <th class=\"slds-truncate\"><apex:outputText value=\"{!obj.Name}\" /></th>\n        <td class=\"slds-truncate\"><apex:outputText value=\"{!obj.Objective_Type__c}\" /></td>\n        <td class=\"slds-truncate\"><apex:outputText value=\"{!obj.Objective_Status__c}\" /></td>\n        <td class=\"\">\n        	<apex:outputText value=\"{0,date,MM/dd/yyyy}\">\n        		<apex:param value=\"{!obj.Start_Date__c}\" />\n        	</apex:outputText>\n        </td>\n        <td class=\"\">\n        	<apex:outputText value=\"{0,date,MM/dd/yyyy}\">\n        		<apex:param value=\"{!obj.End_Date__c}\" />\n        	</apex:outputText>\n        </td>\n        <td class=\"slds-truncate\"><apex:outputText value=\"{!obj.Description__c}\" /></td>\n        <td class=\"slds-truncate\"><apex:outputText value=\"{!obj.Version__c	}\" /></td>\n\n        <td class=\"slds-cell-shrink\" data-label=\"Actions\">\n          <div class=\"slds-button-group\" role=\"group\">\n			  <button class=\"slds-button slds-button--icon-border\">\n			    <svg aria-hidden=\"true\" class=\"slds-button__icon\">\n			      <use xlink:href=\"{!URLFOR($Resource.SLDS100, 'assets/icons/utility-sprite/svg/symbols.svg#edit_form')}\"></use>\n			    </svg>\n			    <span class=\"slds-assistive-text\">Edit</span>\n			  </button>\n			  <apex:pageBlock rendered=\"{!obj.Objective_Status__c == 'Closed' }\">\n			  <button class=\"slds-button slds-button--icon-border\" rendered=\"{!obj.Objective_Status__c == 'Closed' }\">\n			    <svg aria-hidden=\"true\" class=\"slds-button__icon\">\n			      <use xlink:href=\"{!URLFOR($Resource.SLDS100, 'assets/icons/utility-sprite/svg/symbols.svg#delete')}\"></use>\n			    </svg>\n			    <span class=\"slds-assistive-text\">Delete</span>\n			  </button>	\n			  </apex:pageBlock>		 \n		  </div>\n        </td>\n      </tr>\n    </apex:repeat>       \n    </tbody>\n\n  	</table>\n\n  	<footer role=\"contentinfo\" class=\"slds-p-around--large\">\n      <div class=\"slds-grid slds-grid--align-spread\">\n        <p class=\"slds-col\">Salesforce Bugs Tracker Application</p>\n        <p class=\"slds-col\">&copy; Dmitrii Surkov</p>\n      </div>\n    </footer>\n\n	</div>\n</body>\n</html> \n</apex:page>",
 			"file": "src/pages/BugsTracker.page",
-			"file_size": 5111,
-			"file_write_time": 131033697927267591,
 			"settings":
 			{
-				"buffer_size": 5112,
+				"buffer_size": 10151,
 				"line_ending": "Unix"
 			}
 		},
@@ -90,7 +91,7 @@
 			"file": "src/classes/BugsTrackerController.cls",
 			"settings":
 			{
-				"buffer_size": 334,
+				"buffer_size": 1329,
 				"line_ending": "Unix"
 			}
 		}
@@ -171,6 +172,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			";\n",
+			"Objective",
 			"<\n",
 			"Lead Owner is",
 			"Email__c",
@@ -208,15 +211,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5112,
+						"buffer_size": 10151,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4694,
-								4694
+								7805,
+								7805
 							]
 						],
 						"settings":
@@ -224,7 +227,7 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1440.0,
+						"translation.y": 3300.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -236,15 +239,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 334,
+						"buffer_size": 1329,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								233,
-								214
+								155,
+								267
 							]
 						],
 						"settings":

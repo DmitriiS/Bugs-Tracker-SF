@@ -3,12 +3,29 @@
 <head>
     <title>Salesforce Bugs Tracker Application</title>
     <apex:stylesheet value="{!URLFOR($Resource.SLDS100, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
-    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
+    <apex:stylesheet value="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
+
+<apex:remoteObjects >
+	<apex:remoteObjectModel name="Objective__c" 
+							jsShorthand="Objective" 
+							fields="Id,
+							Name, 
+							Description__c, 
+							Objective_Status__c, 
+							Objective_Type__c,
+							Start_Date__c, 	
+							End_Date__c, 
+							Version__c">
+	</apex:remoteObjectModel>
+</apex:remoteObjects>
 
 <body>
 <div class="slds">  
-	<!-- IMPROVE THIS PART -->
+<!-- IMPROVE THIS PART -->
+<div id="wrapper" aria-hidden="false">
 <div class="slds-page-header" role="banner">
   <div class="slds-grid">
     <div class="slds-col slds-has-flexi-truncate">
@@ -22,7 +39,7 @@
           <div class="slds-grid">
             <h1 class="slds-page-header__title slds-m-right--small slds-truncate slds-align-middle" title="Record Title">List of Objectives</h1>
             <div class="slds-col slds-shrink-none">
-              <button class="slds-button slds-button--neutral slds-not-selected" aria-live="assertive">
+              <button class="slds-button slds-button--neutral slds-not-selected" aria-live="assertive" id="newObjective">
                 <span class="slds-text-not-selected">
                   <svg aria-hidden="true" class="slds-button__icon--stateful slds-button__icon--left">
                     <use xlink:href="{!URLFOR($Resource.SLDS100, 'assets/icons/utility-sprite/svg/symbols.svg#add')}"></use>
@@ -69,42 +86,102 @@
         <th class="slds-cell-shrink"></th>
       </tr>
     </thead>
-
+<!-- !!!!!!!!!!!!!!! CHANGE TO JQUERY BASED MARKUP !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     <tbody id='theObjectivesTable'>   
     <apex:repeat value="{!objectives}" var="obj">  
       <tr class="slds-hint-parent">       
         <th class="slds-truncate"><apex:outputText value="{!obj.Name}" /></th>
         <td class="slds-truncate"><apex:outputText value="{!obj.Objective_Type__c}" /></td>
         <td class="slds-truncate"><apex:outputText value="{!obj.Objective_Status__c}" /></td>
-        <td class="">
-        	<apex:outputText value="{0,date,MM/dd/yyyy}">
-        		<apex:param value="{!obj.Start_Date__c}" />
-        	</apex:outputText>
-        </td>
-        <td class="">
-        	<apex:outputText value="{0,date,MM/dd/yyyy}">
-        		<apex:param value="{!obj.End_Date__c}" />
-        	</apex:outputText>
-        </td>
+        <td class="slds-truncate"><apex:outputText value="{!obj.Start_Date__c}" /></td>
+        <td class="slds-truncate"><apex:outputText value="{!obj.End_Date__c}" /></td>        
         <td class="slds-truncate"><apex:outputText value="{!obj.Description__c}" /></td>
         <td class="slds-truncate"><apex:outputText value="{!obj.Version__c	}" /></td>
-
+<!-- !!!!!!!!!!!!!!! CHANGE TO JQUERY BASED MARKUP !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
         <td class="slds-cell-shrink" data-label="Actions">
-        
+<!-- !!!!!!!!!!!!!!! CHANGE TO BUTTON TAGS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
           <apex:form>
-          	  <apex:commandButton styleClass="slds-button slds-button--neutral" action="{!deleteObjective}" value="Edit" title="Edit Objective" 
-			  reRender="theObjectivesTable"/>
-			  <apex:commandButton styleClass="slds-button slds-button--neutral" action="{!deleteObjective}" value="Delete" title="Delete Objective" 
-			  reRender="theObjectivesTable"/>
+          	  <apex:commandButton styleClass="slds-button slds-button--neutral modalButton" action="{!editObjective}" value="Edit" title="Edit Objective" reRender="theObjectivesTable"/>
+			  <apex:commandButton styleClass="slds-button slds-button--neutral createObjective" action="{!deleteObjective}" value="Delete" title="Delete Objective" reRender="theObjectivesTable"/>
 		  </apex:form>
-	
+<!-- !!!!!!!!!!!!!!! CHANGE TO BUTTON TAGS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->	
         </td>
       </tr>
     </apex:repeat>       
     </tbody>
-
   	</table>
+  	<br /><br />
+
+	<!-- FORM FOR CREATING NEW OBJECTIVE -->
+  	<div class="slds-modal slds-fade-in-close" id="newObjectiveModal" aria-hidden="true" role="dialog">
+    <div class="slds-modal__container">
+      <div class="slds-modal__header">
+        <button class="slds-button slds-button--icon-inverse slds-modal__close" >
+          <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+            <use xlink:href="{!URLFOR($Resource.SLDS100, 'assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+          </svg>
+          <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 class="slds-text-heading--medium">Add new Bug or Feature</h2>
+      </div>
+      <div class="slds-modal__content slds-p-around--medium">
+        <div>
+        <form class="slds-form--stacked">
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="name">Name</label>
+				<div class="slds-form-element__control">
+					<input id="newName" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="description">Description</label>
+				<div class="slds-form-element__control">
+					<input id="newDescription" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="objectiveStatus">Objective Status</label>
+				<div class="slds-form-element__control">
+					<input id="newObjectiveStatus" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="objectiveType">Objective Type</label>
+				<div class="slds-form-element__control">
+					<input id="newObjectiveType" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="version">Version</label>
+				<div class="slds-form-element__control">
+					<input id="newVersion" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="startDate">Start Date</label>
+				<div class="slds-form-element__control">
+					<input id="newStartDate" class="slds-input date-pick" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="endDate">End Date</label>
+				<div class="slds-form-element__control">
+					<input id="newEndDate" class="slds-input date-pick" type="text" />
+				</div>
+			</div>		
+			<input type="hidden" class="form-control" id="inputId" />			
+			</form>
+        </div>
+      </div>
+      <div class="slds-modal__footer">
+        <button class="slds-button slds-button--neutral cancel-modal">Cancel</button>
+        <button class="slds-button slds-button--neutral slds-button--brand" id="saveObjective">Save</button>
+      </div>
+    </div>
+    </div>
+    <div class="slds-backdrop slds-backdrop--close" id="modalBackground"></div>
   	
+	
   	<footer role="contentinfo" class="slds-p-around--large">
       <div class="slds-grid slds-grid--align-spread">
         <p class="slds-col">Salesforce Bugs Tracker Application</p>
@@ -112,16 +189,100 @@
       </div>
     </footer>
 	</div>
+	</div>
 </body>
-
-
-
 </html> 
 
+<script type="text/javascript">
+	j$ = jQuery.noConflict();
+	
+	j$(document).ready(function () 
+    {    	
+    	var myDate = new Date();
+    	j$("#newStartDate, .date-pick").datepicker(
+    	{
+    		dateFormat:"mm/dd/yy",
+    	});
+		j$("#newStartDate").datepicker("setDate", myDate);
+    });    
+	
+	// New bug or feature click    
+    j$('#newObjective').click(function()
+    { 
+    	openModalWindow();
+    });
 
+	//Save button click       
+    j$('#saveObjective').click(function()
+    { 
+    	createObjective();
+    });
 
+    //Close button click
+    j$('.slds-modal__close, .cancel-modal').click(function()
+    {
+    	closeModalWindow();
+    });       
+    
+    //Function to retrieve all objective
+    function retrieveObjectives()
+    {
+    	var objectives = new SObjectModel.Objective();
+    	objectives.retrieve({limit: 30}, function(err, records, event)
+    	{
+            if(err) 
+            {
+				alert(err.message);
+			}else 
+			{
 
-<script>
+			}
+
+    }
+
+	//Function to Create Objective
+  	function createObjective()
+  	{
+    	var createObj = new SObjectModel.Objective(
+	    { 
+	    	Name : j$('#newName').val(),
+			Description__c : j$('#newDescription').val(),
+			Objective_Status__c : j$('#newObjectiveStatus').val(),
+			Objective_Type__c : j$('#newObjectiveType').val(),
+			Version__c : j$('#newVersion').val(),
+			Start_Date__c : j$('#newStartDate').val(),
+			End_Date__c : j$('#newEndDate').val()							
+	    });
+		createObj.create(createCallback);	
+    }    
+
+    // Callback to handle DML Remote Objects calls
+    function createCallback(err, ids)
+    {
+	    if (err) 
+	    { 
+	        alert(err); 
+	    } else 
+	    {
+	        alert('Insert Complete');
+	        j$('#theObjectivesTable').empty();
+	        closeModalWindow();
+	        retrieveObjectives();
+	    }
+    }
+
+    function closeModalWindow() 
+    {
+    	j$('.slds-modal').toggleClass('slds-fade-in-open slds-fade-in-close');
+    	j$('.slds-backdrop').toggleClass('slds-backdrop--open slds-backdrop--close'); 
+    }
+
+    function openModalWindow() 
+    {
+    	j$('.slds-modal').toggleClass('slds-fade-in-close slds-fade-in-open');
+    	j$('.slds-backdrop').toggleClass('slds-backdrop--close slds-backdrop--open'); 
+    }
+
 </script>
 
 </apex:page>

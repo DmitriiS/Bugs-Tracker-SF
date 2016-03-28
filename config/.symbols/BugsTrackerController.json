@@ -1,20 +1,5 @@
 {
-    "constructors": [
-        {
-            "annotations": [],
-            "location": {
-                "column": 9,
-                "line": 5
-            },
-            "modifiers": [
-                "public"
-            ],
-            "name": "BugsTrackerController",
-            "parameters": [],
-            "references": [],
-            "type": null
-        }
-    ],
+    "constructors": [],
     "externalReferences": [],
     "id": "01p58000003G7ABAA0",
     "innerClasses": [],
@@ -25,7 +10,7 @@
             "annotations": [],
             "location": {
                 "column": 14,
-                "line": 9
+                "line": 6
             },
             "modifiers": [
                 "public"
@@ -40,12 +25,57 @@
             "annotations": [],
             "location": {
                 "column": 14,
-                "line": 18
+                "line": 16
             },
             "modifiers": [
                 "public"
             ],
             "name": "deleteObjective",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 21
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "saveObjective",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 26
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "editObjective",
+            "parameters": [],
+            "references": [],
+            "returnType": "void",
+            "type": null
+        },
+        {
+            "annotations": [],
+            "location": {
+                "column": 14,
+                "line": 31
+            },
+            "modifiers": [
+                "public"
+            ],
+            "name": "backupObjective",
             "parameters": [],
             "references": [],
             "returnType": "void",

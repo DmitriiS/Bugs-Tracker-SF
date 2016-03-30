@@ -94,7 +94,7 @@
   	<div class="slds-modal slds-fade-in-close" id="newObjectiveModal" aria-hidden="true" role="dialog">
     <div class="slds-modal__container">
       <div class="slds-modal__header">
-        <button class="slds-button slds-button--icon-inverse slds-modal__close" >
+        <button class="slds-button slds-button--icon-inverse slds-modal__close cancel-create" >
           <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
             <use xlink:href="{!URLFOR($Resource.SLDS100, 'assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
           </svg>
@@ -152,11 +152,81 @@
         </div>
       </div>
       <div class="slds-modal__footer">
-        <button class="slds-button slds-button--neutral cancel-modal">Cancel</button>
+        <button class="slds-button slds-button--neutral cancel-modal cancel-create-down">Cancel</button>
         <button class="slds-button slds-button--neutral slds-button--brand" id="saveObjective">Save</button>
       </div>
     </div>
     </div>
+
+	<!-- FORM FOR EDITING OBJECTIVE -->
+  	<div class="slds-modal slds-fade-in-close" id="editObjectiveModal" aria-hidden="true" role="dialog">
+    <div class="slds-modal__container">
+      <div class="slds-modal__header">
+        <button class="slds-button slds-button--icon-inverse slds-modal__close cancel-edit" >
+          <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+            <use xlink:href="{!URLFOR($Resource.SLDS100, 'assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+          </svg>
+          <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 class="slds-text-heading--medium">Edit Objective</h2>
+      </div>
+      <div class="slds-modal__content slds-p-around--medium">
+        <div>
+        <form class="slds-form--stacked">
+			<div class="slds-form-element">
+				<label class="slds-form-element__label slds-required" for="name">Name</label>
+				<div class="slds-form-element__control">
+					<input id="editName" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="description">Description</label>
+				<div class="slds-form-element__control">
+					<input id="editDescription" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="objectiveStatus">Objective Status</label>
+				<div class="slds-form-element__control">
+					<input id="editObjectiveStatus" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="objectiveType">Objective Type</label>
+				<div class="slds-form-element__control">
+					<input id="editObjectiveType" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label slds-required" for="version">Version</label>
+				<div class="slds-form-element__control">
+					<input id="editVersion" class="slds-input" type="text" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label slds-required" for="startDate">Start Date</label>
+				<div class="slds-form-element__control">
+					<input id="editStartDate" class="slds-input date-pick" />
+				</div>
+			</div>
+			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="endDate">End Date</label>
+				<div class="slds-form-element__control">
+					<input id="editEndDate" class="slds-input date-pick" type="text" />
+				</div>
+			</div>		
+			<input type="hidden" class="form-control" id="editId" />			
+			</form>
+        </div>
+      </div>
+      <div class="slds-modal__footer">
+        <button class="slds-button slds-button--neutral cancel-modal cancel-edit-down">Cancel</button>
+        <button class="slds-button slds-button--neutral slds-button--brand" id="saveEditedObjective">Save</button>
+      </div>
+    </div>
+    </div>
+    <div class="slds-backdrop slds-backdrop--close" id="modalBackground"></div>
+
     <div class="slds-backdrop slds-backdrop--close" id="modalBackground"></div>
   	
 	
@@ -172,6 +242,8 @@
 </html> 
 
 <script type="text/javascript">
+
+	// Initial javascript
 	j$ = jQuery.noConflict();
 	
 	j$(document).ready(function () 
@@ -189,28 +261,50 @@
 	// New bug or feature click    
     j$('#newObjective').click(function()
     { 
-    	openModalWindow();
+    	openCreateModalWindow();
     });
 
-	//Save button click       
+	// Save button click Create dialog      
     j$('#saveObjective').click(function()
     { 
     	createObjective();
     });
 
-    //Close button click
-    j$('.slds-modal__close, .cancel-modal').click(function()
+    // Close button click Create dialog
+    j$('.cancel-create').click(function()
     {
-    	closeModalWindow();
-    });       
+    	closeCreateModalWindow();
+    });
 
-    //Backup buttin click
+    j$('.cancel-create-down').click(function()
+    {
+    	closeCreateModalWindow();
+    });   
+
+    // Save button click Edit dialog       
+    j$('#saveEditedObjective').click(function()
+    { 
+    	editObjective();
+    });
+
+    // Close button click Edit dialog
+    j$('.cancel-edit').click(function()
+    {
+    	closeEditModalWindow();
+    });    
+
+    j$('.cancel-edit-down').click(function()
+    {
+    	closeEditModalWindow();
+    });        
+
+    // Backup button click
     j$('#backupButton').click(function()
     {
-    	checkForNull();
+    	
     });
     
-    //Function to retrieve all objective
+    // Function to retrieve all objective
     function retrieveObjectives()
     {
     	var objectives = new SObjectModel.Objective();
@@ -226,7 +320,7 @@
 		});		
     }
 
-    //Function to populate retrieved records to page
+    // Function to populate retrieved records to page
     function populate(records)
     {
     	var tableBody = j$('#theObjectivesTable');
@@ -239,12 +333,31 @@
         	var tableColType = j$('<td class="slds-truncate" scope="row" data-label="Type">' + record.get('Objective_Type__c') + '</td>');
         	var tableColVers = j$('<td class="slds-truncate" scope="row" data-label="Version">' + record.get('Version__c') + '</td>');
         	var tableColSDate = j$('<td class="slds-truncate" scope="row" data-label="Start_Date">' + record.get('Start_Date__c') + '</td>');
-        	var tableColEDate = j$('<td class="slds-truncate" scope="row" data-label="End_Date">' + record.get('End_Date__c') + '</td>'); 
-        	var tableButtons = j$('<td class="slds-truncate" scope="row" data-label="End_Date">' + record.get('Id') + '</td></tr>'); 
-        	/*var buttons = $j('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral">Edit</button><button class="slds-button slds-button--neutral">Delete</button></td></tr>');*/
-        	   
+        	var tableColEDate = j$('<td class="slds-truncate" scope="row" data-label="End_Date">' + record.get('End_Date__c') + '</td>');
+        	var tableEdit = j$('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral id="editButton">Edit</button></td>');
+        	var tableDelete = j$('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral" id="deleteButton">Delete</button></td></tr>');
+        	
+        	tableEdit.click(function()
+        	{        	  
+				j$('#editId').val(record.get("Id"));
+				j$('#editName').val(record.get("Name"));
+				j$('#editDescription').val(record.get("Description__c"));
+				j$('#editObjectiveStatus').val(record.get("Objective_Status__c"));
+				j$('#editObjectiveType').val(record.get("Objective_Type__c"));
+				j$('#editVersion').val(record.get("Version__c"));
+				j$('#editStartDate').val(record.get("Start_Date__c"));
+				j$('#editEndDate').val(record.get("End_Date__c"));
+				openEditModalWindow();
+            });
 
-        	tableRow.prepend(tableButtons);        	
+			tableDelete.click(function()
+			{			
+				j$('#inputId').val(record.get("Id"));
+				deleteObjective();
+            });
+
+			tableRow.prepend(tableDelete);
+        	tableRow.prepend(tableEdit);        	
         	tableRow.prepend(tableColVers); 
         	tableRow.prepend(tableColDesc);
         	tableRow.prepend(tableColEDate);
@@ -255,10 +368,11 @@
 	        tableRow.appendTo(tableBody);
 
 	        checkForNull();
+	        checkDeleteButton();
         });
 	}    
 
-	//Function to Create Objective
+	// Function to Create Objective
   	function createObjective()
   	{
     	var createObj = new SObjectModel.Objective(
@@ -274,10 +388,42 @@
 		createObj.create(createCallback);	
     }    
 
+    // Function for Delete Objective
+    function deleteObjective()
+    {
+       	var delObj = new SObjectModel.Objective(
+	    {
+	        Id : j$('#inputId').val()
+	    });     
+	    delObj.del(deleteCallback);    	
+    }
+
+    //Function to edit Objective
+    function editObjective()
+    {
+    	var editObj = new SObjectModel.Objective(
+    	{
+    		Id : j$('#editId').val(),
+    		Name : j$('#editName').val(),
+			Description__c : j$('#editDescription').val(),
+			Objective_Status__c : j$('#editObjectiveStatus').val(),
+			Objective_Type__c : j$('#editObjectiveType').val(),
+			Version__c : j$('#editVersion').val(),
+			Start_Date__c : j$('#editStartDate').val(),
+			End_Date__c : j$('#editEndDate').val()	    		
+    	});
+    	editObj.update(editCallback);
+    }
+
     //Function to change "undefiend" values to empty string
     function checkForNull()
     {
     	j$("td:contains('undefined')").html("");
+    }
+
+    function checkDeleteButton()
+    {
+    	
     }
 
     // Callback to handle DML Remote Objects calls
@@ -289,20 +435,63 @@
 	    } else 
 	    {
 	        j$('#theObjectivesTable').empty();
-	        closeModalWindow();
+	        closeCreateModalWindow();
 	        retrieveObjectives();
 	    }
     }
 
-    function closeModalWindow() 
+    function editCallback(err, ids)
+    {
+	    if (err) 
+	    { 
+	        alert(err); 
+	    } else 
+	    {
+	        j$('#theObjectivesTable').empty();
+	        closeEditModalWindow();
+	        retrieveObjectives();
+	    }
+    }
+
+    function deleteCallback(err, ids)
+    {
+	    if (err) 
+	    { 
+	        alert(err); 
+	    } else 
+	    {
+	        j$('#theObjectivesTable').empty();
+	        retrieveObjectives();
+	    }
+    }
+
+    function closeCreateModalWindow() 
+    {
+    	j$('#newObjectiveModal').toggleClass('slds-fade-in-open slds-fade-in-close');
+    	j$('.slds-backdrop').toggleClass('slds-backdrop--open slds-backdrop--close'); 
+    }
+
+    function closeEditModalWindow()
+    {
+    	j$('#editObjectiveModal').toggleClass('slds-fade-in-open slds-fade-in-close');
+    	j$('.slds-backdrop').toggleClass('slds-backdrop--open slds-backdrop--close'); 
+    }
+
+     function closeModalWindow()
     {
     	j$('.slds-modal').toggleClass('slds-fade-in-open slds-fade-in-close');
     	j$('.slds-backdrop').toggleClass('slds-backdrop--open slds-backdrop--close'); 
     }
 
-    function openModalWindow() 
+    function openCreateModalWindow() 
     {
-    	j$('.slds-modal').toggleClass('slds-fade-in-close slds-fade-in-open');
+    	j$('#newObjectiveModal').toggleClass('slds-fade-in-close slds-fade-in-open');
+    	j$('.slds-backdrop').toggleClass('slds-backdrop--close slds-backdrop--open'); 
+    }
+
+    function openEditModalWindow() 
+    {
+    	j$('#editObjectiveModal').toggleClass('slds-fade-in-close slds-fade-in-open');
     	j$('.slds-backdrop').toggleClass('slds-backdrop--close slds-backdrop--open'); 
     }
 

@@ -83,15 +83,7 @@
 			"file": "src/pages/BugsTracker.page",
 			"settings":
 			{
-				"buffer_size": 12632,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/classes/BugsTrackerController.cls",
-			"settings":
-			{
-				"buffer_size": 1401,
+				"buffer_size": 17069,
 				"line_ending": "Unix"
 			}
 		}
@@ -143,6 +135,7 @@
 	],
 	"file_history":
 	[
+		"/D/!!! Projects/Bugs Tracker/src/classes/BugsTrackerController.cls",
 		"/D/!!! Projects/Chargify + Pandadoc Sandbox/src/classes/TriggerHelper.cls",
 		"/D/!!! Projects/Chargify + Pandadoc Sandbox/src/classes/IntercomIO.cls",
 		"/D/!!! Projects/Pandadoc/src/pages/PandaDocSetupCss.page",
@@ -172,6 +165,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"alert",
+			"inputId",
+			"editObjective",
+			"editButton",
+			"ModalWindow",
+			"openCreateModalWindow",
+			"newObjectiveModal",
+			"editObjective",
+			"ModalWindow",
+			"newObjectiveModal",
+			"inputId",
+			"Callback",
 			"RemoteAction",
 			"inputId",
 			";\n",
@@ -213,15 +218,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12632,
+						"buffer_size": 17069,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11021,
-								11021
+								10653,
+								10653
 							]
 						],
 						"settings":
@@ -229,38 +234,10 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 4871.0,
+						"translation.y": 5185.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/classes/BugsTrackerController.cls",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1401,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								102,
-								102
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/MavensMate/sublime/lang/Apex.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 60.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]

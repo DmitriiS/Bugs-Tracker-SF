@@ -83,7 +83,7 @@
 			"file": "src/pages/BugsTracker.page",
 			"settings":
 			{
-				"buffer_size": 17069,
+				"buffer_size": 22645,
 				"line_ending": "Unix"
 			}
 		}
@@ -165,6 +165,50 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"selectTypeOfObjective",
+			"statusRadioButton",
+			"selectTypeOfObjective",
+			"typeOfOdjective",
+			"checked",
+			"status",
+			"typeOfOdjective",
+			"clearFieldValues()",
+			"#newEndDate",
+			"console",
+			"Type of Objective",
+			"saveObjective",
+			"slds-button",
+			"createCallback",
+			"createObjective",
+			"newObjective",
+			"slds-button",
+			"saveObjective",
+			"createObjective",
+			"slds-picklist__label",
+			"slds-form-element",
+			"slds-dropdown-trigger--click",
+			"slds-form-element",
+			"slds-picklist",
+			"slds-dropdown-trigger",
+			"slds-dropdown-trigger--click",
+			"retrieveObjectives()",
+			"retri",
+			"typePicklist",
+			"hidd",
+			"deleteButton",
+			"editButton",
+			"checkForNull",
+			"retrieveObjectives",
+			"saveEditedObjective",
+			"createObjective",
+			"saveObjective",
+			"newObjective",
+			"Add new Bug or Feature",
+			"openEditModalWindow()",
+			"editName",
+			"down",
+			"closeModalWindow",
+			"newObjectiveModal",
 			"alert",
 			"inputId",
 			"editObjective",
@@ -218,15 +262,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 17069,
+						"buffer_size": 22645,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10653,
-								10653
+								17861,
+								17861
 							]
 						],
 						"settings":
@@ -234,7 +278,7 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 5185.0,
+						"translation.y": 8715.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -324,7 +368,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 547.0,
+	"side_bar_width": 282.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -11,14 +11,7 @@
 <apex:remoteObjects >
 	<apex:remoteObjectModel name="Objective__c" 
 							jsShorthand="Objective" 
-							fields="Id,
-							Name, 
-							Description__c, 
-							Objective_Status__c, 
-							Objective_Type__c,
-							Start_Date__c, 	
-							End_Date__c, 
-							Version__c">
+							fields="Id,Name,Description__c,Objective_Status__c,Objective_Type__c,Start_Date__c,End_Date__c,Version__c">
 	</apex:remoteObjectModel>
 </apex:remoteObjects>
 
@@ -106,37 +99,88 @@
         <div>
         <form class="slds-form--stacked">
 			<div class="slds-form-element">
-				<label class="slds-form-element__label slds-required" for="name">Name</label>
+				<label class="slds-form-element__label slds-required" for="name">*Name</label>
 				<div class="slds-form-element__control">
 					<input id="newName" class="slds-input" type="text" />
 				</div>
 			</div>
+			
+			<!--RADIOBUTTON FOR CHOOSING TYPE OF OBJECTIVE -->
+			<div class="slds-form-element">
+				<fieldset class="slds-form-element">
+				    <legend class="form-element__legend slds-form-element__label slds-form-element__label"></legend>
+				    <label class="slds-form-element__label slds-required" for="name">*Type of Objective</label><br />
+				    <div class="slds-form-element__control" id="selectTypeOfObjectiveDiv">
+				      <label class="slds-radio">
+				        <input type="radio" name="selectTypeOfObjective" value="Bug">
+					        <span class="slds-radio--faux"></span>
+					        <span class="slds-form-element__label">Bug</span>
+				        </input>
+				      </label>
+				      <label class="slds-radio">
+				        <input type="radio" name="selectTypeOfObjective" value="Feature">
+					        <span class="slds-radio--faux"></span>
+					        <span class="slds-form-element__label">Feature</span>
+				        </input>
+				      </label>
+				    </div>
+				</fieldset>
+			</div>
+
+			<!--RADIOBUTTON FOR CHOOSING STATUS OF OBJECTIVE -->
+			<div class="slds-form-element" id="statusRadioButton">
+				<fieldset class="slds-form-element">
+				    <legend class="form-element__legend slds-form-element__label slds-form-element__label"></legend>
+				    <label class="slds-form-element__label slds-required" for="name">*Status of Objective</label><br />
+				    <div class="slds-form-element__control">
+				      <label class="slds-radio" for="colReq">
+				        <input type="radio" name="selectStatusOfObjective" id="colReq" value="Collect requirements">
+					        <span class="slds-radio--faux"></span>
+					        <span class="slds-form-element__label">Collect requirements</span>
+				        </input>
+				      </label>
+				      <label class="slds-radio">
+				        <input type="radio" name="selectStatusOfObjective" value="Open">
+					        <span class="slds-radio--faux"></span>
+					        <span class="slds-form-element__label">Open</span>
+				        </input>
+				      </label>				    
+				    <label class="slds-radio">
+				        <input type="radio" name="selectStatusOfObjective" value="In Progress">
+					        <span class="slds-radio--faux"></span>
+					        <span class="slds-form-element__label">In Progress</span>
+				        </input>
+				      </label>
+				      <label class="slds-radio" for="inRev">
+				        <input type="radio" name="selectStatusOfObjective" id="inRev" value="In Review">
+					        <span class="slds-radio--faux"></span>
+					        <span class="slds-form-element__label">In Review</span>
+				        </input>
+				      </label>
+				      <label class="slds-radio">
+				        <input type="radio" name="selectStatusOfObjective" value="Closed">
+					        <span class="slds-radio--faux"></span>
+					        <span class="slds-form-element__label">Closed</span>
+				        </input>
+				      </label>
+				    </div>
+				</fieldset>
+			</div>
+
 			<div class="slds-form-element">
 				<label class="slds-form-element__label" for="description">Description</label>
 				<div class="slds-form-element__control">
 					<input id="newDescription" class="slds-input" type="text" />
 				</div>
 			</div>
-			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="objectiveStatus">Objective Status</label>
-				<div class="slds-form-element__control">
-					<input id="newObjectiveStatus" class="slds-input" type="text" />
-				</div>
-			</div>
-			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="objectiveType">Objective Type</label>
-				<div class="slds-form-element__control">
-					<input id="newObjectiveType" class="slds-input" type="text" />
-				</div>
-			</div>
-			<div class="slds-form-element">
-				<label class="slds-form-element__label slds-required" for="version">Version</label>
+			<div class="slds-form-element version">
+				<label class="slds-form-element__label slds-required" for="version" >*Version</label>
 				<div class="slds-form-element__control">
 					<input id="newVersion" class="slds-input" type="text" />
 				</div>
 			</div>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label slds-required" for="startDate">Start Date</label>
+				<label class="slds-form-element__label slds-required" for="startDate">*Start Date</label>
 				<div class="slds-form-element__control">
 					<input id="newStartDate" class="slds-input date-pick" />
 				</div>
@@ -148,7 +192,7 @@
 				</div>
 			</div>		
 			<input type="hidden" class="form-control" id="inputId" />			
-			</form>
+		</form>
         </div>
       </div>
       <div class="slds-modal__footer">
@@ -180,24 +224,33 @@
 				</div>
 			</div>
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="description">Description</label>
+				<label class="slds-form-element__label" for="objectiveType">Objective Type</label>
 				<div class="slds-form-element__control">
-					<input id="editDescription" class="slds-input" type="text" />
+					<input id="editObjectiveType" class="slds-input" type="text" disabled="disabled" />
 				</div>
 			</div>
 			<div class="slds-form-element">
 				<label class="slds-form-element__label" for="objectiveStatus">Objective Status</label>
 				<div class="slds-form-element__control">
-					<input id="editObjectiveStatus" class="slds-input" type="text" />
+					<input id="editObjectiveStatus" class="slds-input" type="text" disabled="disabled"/>
 				</div>
-			</div>
+			</div>	
 			<div class="slds-form-element">
-				<label class="slds-form-element__label" for="objectiveType">Objective Type</label>
 				<div class="slds-form-element__control">
-					<input id="editObjectiveType" class="slds-input" type="text" />
+					<label class="slds-checkbox">
+				        <input type="checkbox" name="options" id="checkboxUpgradeStatus"/>
+				        <span class="slds-checkbox--faux"></span>
+				        <span class="slds-form-element__label">Upgrade Status</span>
+			        </label>
 				</div>
 			</div>
 			<div class="slds-form-element">
+				<label class="slds-form-element__label" for="description">Description</label>
+				<div class="slds-form-element__control">
+					<input id="editDescription" class="slds-input" type="text" />
+				</div>
+			</div>					
+			<div class="slds-form-element version">
 				<label class="slds-form-element__label slds-required" for="version">Version</label>
 				<div class="slds-form-element__control">
 					<input id="editVersion" class="slds-input" type="text" />
@@ -206,7 +259,7 @@
 			<div class="slds-form-element">
 				<label class="slds-form-element__label slds-required" for="startDate">Start Date</label>
 				<div class="slds-form-element__control">
-					<input id="editStartDate" class="slds-input date-pick" />
+					<input id="editStartDate" class="slds-input date-pick" disabled="disabled" />
 				</div>
 			</div>
 			<div class="slds-form-element">
@@ -226,10 +279,7 @@
     </div>
     </div>
     <div class="slds-backdrop slds-backdrop--close" id="modalBackground"></div>
-
-    <div class="slds-backdrop slds-backdrop--close" id="modalBackground"></div>
-  	
-	
+    	
   	<footer role="contentinfo" class="slds-p-around--large">
       <div class="slds-grid slds-grid--align-spread">
         <p class="slds-col">Salesforce Bugs Tracker Application</p>
@@ -237,7 +287,7 @@
       </div>
     </footer>
 	</div>
-	</div>
+	</div> 
 </body>
 </html> 
 
@@ -250,12 +300,12 @@
     {    	
     	retrieveObjectives();
 
-    	var myDate = new Date();
     	j$("#newStartDate, .date-pick").datepicker(
     	{
     		dateFormat:"mm/dd/yy",
     	});
-		j$("#newStartDate").datepicker("setDate", myDate);
+
+		clearFieldValues();
     });    
 	
 	// New bug or feature click    
@@ -274,11 +324,13 @@
     j$('.cancel-create').click(function()
     {
     	closeCreateModalWindow();
+    	clearFieldValues();
     });
 
     j$('.cancel-create-down').click(function()
     {
     	closeCreateModalWindow();
+    	clearFieldValues();
     });   
 
     // Save button click Edit dialog       
@@ -303,7 +355,35 @@
     {
     	
     });
+
+    // Picklist open button click
+    j$('#typePicklist').click(function()
+    {
+    	openPicklistType();
+    	return false;
+    });
+
+    // Picklist Status bug open button click
+    j$('#statusBugPicklist').click(function()
+    {
+    	openPicklistBugStatus();
+    	return false;
+    });
+
+    // Picklist Status feature open button click
+    j$('#statusFeaturePicklist').click(function()
+    {
+    	openPicklistFeatureStatus();
+    	return false;
+    });
     
+	// Picklist choose button click
+    j$('.slds-dropdown__item').click(function()
+    {
+    	//alert(j$(".slds-dropdown__item").val());
+    	console.log(j$(".slds-dropdown__item").val());
+    });
+
     // Function to retrieve all objective
     function retrieveObjectives()
     {
@@ -317,7 +397,7 @@
 			{
 				populate(records); 
 			}
-		});		
+		});				
     }
 
     // Function to populate retrieved records to page
@@ -329,16 +409,41 @@
         	var tableRow = j$('<tr class="slds-hint-parent">');
         	var tableColName = j$('<td class="slds-truncate" scope="row" data-label="Name">' + record.get('Name') + '</td>');
         	var tableColDesc = j$('<td class="slds-truncate" scope="row" data-label="Description">' + record.get('Description__c') + '</td>');
-        	var tableColStat = j$('<td class="slds-truncate" scope="row" data-label="Status">' + record.get('Objective_Status__c') + '</td>');
+        	var tableColStat = j$('<td class="slds-truncate statusField" scope="row" data-label="Status">' + record.get('Objective_Status__c') + '</td>');
+        	var colStatus = record.get('Objective_Status__c');
         	var tableColType = j$('<td class="slds-truncate" scope="row" data-label="Type">' + record.get('Objective_Type__c') + '</td>');
+        	var colType = record.get('Objective_Type__c');
         	var tableColVers = j$('<td class="slds-truncate" scope="row" data-label="Version">' + record.get('Version__c') + '</td>');
         	var tableColSDate = j$('<td class="slds-truncate" scope="row" data-label="Start_Date">' + record.get('Start_Date__c') + '</td>');
         	var tableColEDate = j$('<td class="slds-truncate" scope="row" data-label="End_Date">' + record.get('End_Date__c') + '</td>');
-        	var tableEdit = j$('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral id="editButton">Edit</button></td>');
-        	var tableDelete = j$('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral" id="deleteButton">Delete</button></td></tr>');
+        	var tableEdit = j$('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral">Edit</button></td>');
         	
+        	// Enable delete buttons only if status == closed
+        	if (colStatus == "Closed")
+        	{
+        		var tableDelete = j$('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral">Delete</button></td></tr>');  
+        	}else
+        	{
+        		var tableDelete = j$('<td class="slds-cell-shrink" data-label="Actions"><button class="slds-button slds-button--neutral deleteButton" disabled="true">Delete</button></td></tr>'); 
+        	}        
+
         	tableEdit.click(function()
         	{        	  
+        		j$("#checkboxUpgradeStatus").prop('checked', false);
+        		j$('#checkboxUpgradeStatus').removeAttr("disabled");
+        		if (colStatus === "Closed")
+		    	{
+		    		j$('#checkboxUpgradeStatus').attr("disabled", "disabled");
+		    	}
+
+        		if (colType === "Bug")
+        		{
+        			j$(".version").show();
+        		}else
+        		{
+        			j$(".version").hide();
+        		}
+
 				j$('#editId').val(record.get("Id"));
 				j$('#editName').val(record.get("Name"));
 				j$('#editDescription').val(record.get("Description__c"));
@@ -347,7 +452,7 @@
 				j$('#editVersion').val(record.get("Version__c"));
 				j$('#editStartDate').val(record.get("Start_Date__c"));
 				j$('#editEndDate').val(record.get("End_Date__c"));
-				openEditModalWindow();
+				openEditModalWindow();				
             });
 
 			tableDelete.click(function()
@@ -368,25 +473,53 @@
 	        tableRow.appendTo(tableBody);
 
 	        checkForNull();
-	        checkDeleteButton();
         });
 	}    
 
 	// Function to Create Objective
   	function createObjective()
   	{
+  		var objType = j$('input[name="selectTypeOfObjective"]:checked').val();
+  		var objStatus = j$('input[name="selectStatusOfObjective"]:checked').val();
+  		var objVersion = j$('#newVersion').val();
+  		var objStartDate = j$('#newStartDate').val();
     	var createObj = new SObjectModel.Objective(
 	    { 
 	    	Name : j$('#newName').val(),
-			Description__c : j$('#newDescription').val(),
-			Objective_Status__c : j$('#newObjectiveStatus').val(),
-			Objective_Type__c : j$('#newObjectiveType').val(),
-			Version__c : j$('#newVersion').val(),
-			Start_Date__c : j$('#newStartDate').val(),
+			Description__c : j$('#newDescription').val(),						
+			Objective_Type__c : objType,		
+			Objective_Status__c : objStatus,		
+			Version__c : objVersion,
+			Start_Date__c : objStartDate,
 			End_Date__c : j$('#newEndDate').val()							
 	    });
-		createObj.create(createCallback);	
-    }    
+	    if (objType === undefined)
+		{
+			alert("Objective type is required field!");				
+		}else if (objStatus === undefined)
+		{
+			alert("Objective status is required field!");
+		}else if ((objType === "Bug") && (objVersion === ""))
+		{
+			alert("Bug version is required field!");		
+		}else
+		{
+	    	createObj.create(createCallback); 
+	    }  	
+    }        
+
+    // Function to clear field values in create form
+    function clearFieldValues()
+    {
+	    j$('#newName').val(''); 
+	    j$('#newDescription').val(''); 
+	    j$('#newVersion').val('');
+	    j$('#newStartDate').val('');
+	    j$('#newEndDate').val(''); 
+	    j$('#statusRadioButton').hide();
+	    j$('.version').hide();	    
+	    setDateToday();    
+	}
 
     // Function for Delete Objective
     function deleteObjective()
@@ -398,35 +531,104 @@
 	    delObj.del(deleteCallback);    	
     }
 
-    //Function to edit Objective
+    // Function to edit Objective
     function editObjective()
-    {
+    {    
+    	var colType = j$('#editObjectiveType').val();
+    	var colStatus = j$('#editObjectiveStatus').val();
+
     	var editObj = new SObjectModel.Objective(
     	{
     		Id : j$('#editId').val(),
     		Name : j$('#editName').val(),
 			Description__c : j$('#editDescription').val(),
-			Objective_Status__c : j$('#editObjectiveStatus').val(),
 			Objective_Type__c : j$('#editObjectiveType').val(),
+			Objective_Status__c : j$('#editObjectiveStatus').val(),
 			Version__c : j$('#editVersion').val(),
 			Start_Date__c : j$('#editStartDate').val(),
 			End_Date__c : j$('#editEndDate').val()	    		
     	});
+    	if (j$('#checkboxUpgradeStatus').is(':checked'))
+		{			
+			var newStatus = setNewStatus(colType, colStatus);
+			editObj.set('Objective_Status__c', newStatus);
+		}		
     	editObj.update(editCallback);
     }
 
-    //Function to change "undefiend" values to empty string
+    // Function to set new Status for Objective
+    function setNewStatus(colType, colStatus)
+    {
+    	var newStatus = "";
+    	if (colType === "Bug")
+    	{
+    		switch (colStatus)
+    		{
+    			case "Open":
+    			{
+    				newStatus = "In Progress";
+    				break;
+    			}
+    			case "In Progress":
+    			{
+    				newStatus = "Closed";
+    				break;
+    			}
+    			case "Closed":
+    			{
+    				newStatus = "Closed";
+    				break;
+    			}
+    			default:
+				{
+					alert("Unexpected error!")
+				}
+			}    		
+    	}else if(colType === "Feature")
+    	{
+    		switch(colStatus)
+    		{
+	    		case "Collect requirements":
+				{
+					newStatus = "Open";
+					break;
+				}
+				case "Open":
+				{
+					newStatus = "In Progress";
+					break;
+				}
+				case "In Progress":
+				{
+					newStatus = "In Review";
+					break;
+				}
+				case "In Review":
+				{
+					newStatus = "Closed";
+					break;
+				}
+				case "Closed":
+				{
+					newStatus = "Closed";
+					break;
+				}
+				default:
+				{
+					alert("Unexpected error!")
+				}
+			}
+    	}
+    	return newStatus;
+    }
+
+    // Function to change "undefiend" values to empty string
     function checkForNull()
     {
     	j$("td:contains('undefined')").html("");
     }
-
-    function checkDeleteButton()
-    {
-    	
-    }
-
-    // Callback to handle DML Remote Objects calls
+    
+    // Callbacks to handle DML Remote Objects calls
     function createCallback(err, ids)
     {
 	    if (err) 
@@ -437,6 +639,7 @@
 	        j$('#theObjectivesTable').empty();
 	        closeCreateModalWindow();
 	        retrieveObjectives();
+	        clearFieldValues();
 	    }
     }
 
@@ -463,6 +666,65 @@
 	        j$('#theObjectivesTable').empty();
 	        retrieveObjectives();
 	    }
+    }
+
+    function setDateToday()
+    {
+    	var myDate = new Date();
+    	j$("#newStartDate").datepicker("setDate", myDate);
+    }
+
+    // Functions for choosing appropriate Status list for each Type
+	j$('#selectTypeOfObjectiveDiv').click(function()
+	{			
+		selectTypeOfObjective();
+    });
+
+    function selectTypeOfObjective(value)
+    {
+		var value = value || event;
+		var target = event.target || event.srcElement;
+		var corValue = target.value;
+
+		switch (corValue) 
+		{
+			case 'Bug': 
+			{
+				j$("#statusRadioButton").show();
+				j$("label[for=colReq]").hide();
+				j$("label[for=inRev]").hide();
+				j$(".version").show();
+				break;
+			}
+			case 'Feature': 
+			{
+				j$("#statusRadioButton").show();
+				j$("label[for=colReq]").show();
+				j$("label[for=inRev]").show();
+				j$(".version").hide();
+				break;
+			}
+			default:
+			{
+				alert("Unexpected error!")
+			}
+		}
+    }
+
+
+    function openPicklistType()
+    {
+    	j$('#typePicklist').toggleClass('slds-is-close slds-is-open');    	
+    }
+
+    function openPicklistBugStatus()
+    {
+    	j$('#statusBugPicklist').toggleClass('slds-is-close slds-is-open');
+    }
+
+    function openPicklistFeatureStatus()
+    {
+    	j$('#statusFeaturePicklist').toggleClass('slds-is-close slds-is-open');
     }
 
     function closeCreateModalWindow() 

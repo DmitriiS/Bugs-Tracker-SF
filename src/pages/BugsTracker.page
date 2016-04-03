@@ -579,6 +579,10 @@
     				newStatus = "Closed";
     				break;
     			}
+    			case "":
+				{
+					break;
+				}
     			default:
 				{
 					alert("Unexpected error!")
@@ -611,6 +615,10 @@
 				case "Closed":
 				{
 					newStatus = "Closed";
+					break;
+				}
+				case "":
+				{
 					break;
 				}
 				default:
@@ -688,7 +696,7 @@
 
 		switch (corValue) 
 		{
-			case 'Bug': 
+			case "Bug": 
 			{
 				j$("#statusRadioButton").show();
 				j$("label[for=colReq]").hide();
@@ -696,22 +704,17 @@
 				j$(".version").show();
 				break;
 			}
-			case 'Feature': 
+			case "Feature": 
 			{
 				j$("#statusRadioButton").show();
 				j$("label[for=colReq]").show();
 				j$("label[for=inRev]").show();
 				j$(".version").hide();
-				break;
-			}
-			default:
-			{
-				alert("Unexpected error!")
-			}
+			}			
 		}
     }
 
-
+    // Functions for Modal windows
     function openPicklistType()
     {
     	j$('#typePicklist').toggleClass('slds-is-close slds-is-open');    	

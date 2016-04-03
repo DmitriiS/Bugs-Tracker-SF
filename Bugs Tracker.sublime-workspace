@@ -83,8 +83,8 @@
 			"file": "src/pages/BugsTracker.page",
 			"settings":
 			{
-				"buffer_size": 22645,
-				"line_ending": "Unix"
+				"buffer_size": 25313,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -165,6 +165,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"unex",
+			"attr",
+			"Objective_Status__c",
+			"setNewStatus",
+			"editObjective",
+			"openEditModalWindow",
+			"onlyFeature",
+			"version",
+			"createObj.create",
+			"selectStatusOfObjective",
 			"selectTypeOfObjective",
 			"statusRadioButton",
 			"selectTypeOfObjective",
@@ -262,15 +272,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 22645,
+						"buffer_size": 25313,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17861,
-								17861
+								23791,
+								23791
 							]
 						],
 						"settings":
@@ -278,7 +288,7 @@
 							"syntax": "Packages/MavensMate/sublime/lang/Visualforce.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 8715.0,
+						"translation.y": 13695.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

@@ -1,4 +1,4 @@
-Link for install package:	https://login.salesforce.com/packaging/installPackage.apexp?p0=04t58000000QSpL
+Link for install package:	https://login.salesforce.com/packaging/installPackage.apexp?p0=04t58000000QSpQ
 
 <h2>Список улучшений для Bugs Tracker:</h2><br>
 1)	Продумать реализацию большой таблицы (больше 100 объектов – лимит для Remote Objects) + визуальное восприятие (скроллинг или страницы)<br>
